@@ -1,7 +1,8 @@
 import React from 'react';
+import Select from './Select';
 
 const App = () => {
-  return <div>App</div>;
+  return <Select />;
 };
 
 export default App;
