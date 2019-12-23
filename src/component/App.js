@@ -1,8 +1,8 @@
 import React from 'react';
-import Select from './Select';
+import MultiSelect from './MultiSelect';
 
 const App = () => {
-  return <Select />;
+  return <MultiSelect />;
 };
 
 export default App;

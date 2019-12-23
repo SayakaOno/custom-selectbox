@@ -1,3 +1,6 @@
+.select {
+  outline: none;
+}
 .window {
   border-radius: 5px;
   border: solid 1px blue;
