@@ -1,20 +1,14 @@
 import React, { useState } from 'react';
-import './MultiSelect.css';
+import './SingleSelect.css';
 
-const MultiSelect = props => {
-  const [selectedOptions, setSelectedOptions] = useState([]);
+const SingleSelect = props => {
+  const [selectedOption, setSelectedOption] = useState('');
   const [open, setOpen] = useState(false);
 
   const handleClick = e => {
     let name = e.target.getAttribute('name');
     if (e.target.tagName === 'LI') {
-      if (selectedOptions.includes(name)) {
-        setSelectedOptions(
-          selectedOptions.slice().filter(option => name !== option)
-        );
-      } else {
-        setSelectedOptions([...selectedOptions, name]);
-      }
+      setSelectedOption(name);
     }
   };
 
@@ -25,11 +19,7 @@ const MultiSelect = props => {
       onBlur={open ? () => setOpen(false) : null}
     >
       <div className="window" onClick={() => setOpen(!open)}>
-        {`${selectedOptions[0] || props.displayName || 'display name'}${
-          selectedOptions.length > 1
-            ? ' +' + (selectedOptions.length - 1).toString()
-            : ''
-        }`}
+        {`${selectedOption || props.displayName || 'display name'}`}
       </div>
       {open && (
         <div className="dropdown">
@@ -37,7 +27,7 @@ const MultiSelect = props => {
           <ul onClick={handleClick}>
             <li
               style={{
-                color: selectedOptions.includes('option1') ? 'red' : 'inherit'
+                color: selectedOption === 'option1' ? 'red' : 'inherit'
               }}
               name={'option1'}
             >
@@ -45,7 +35,7 @@ const MultiSelect = props => {
             </li>
             <li
               style={{
-                color: selectedOptions.includes('option2') ? 'red' : 'inherit'
+                color: selectedOption === 'option2' ? 'red' : 'inherit'
               }}
               name={'option2'}
             >
@@ -53,7 +43,7 @@ const MultiSelect = props => {
             </li>
             <li
               style={{
-                color: selectedOptions.includes('option3') ? 'red' : 'inherit'
+                color: selectedOption === 'option3' ? 'red' : 'inherit'
               }}
               name={'option3'}
             >
@@ -61,7 +51,7 @@ const MultiSelect = props => {
             </li>
             <li
               style={{
-                color: selectedOptions.includes('option4') ? 'red' : 'inherit'
+                color: selectedOption === 'option4' ? 'red' : 'inherit'
               }}
               name={'option4'}
             >
@@ -69,7 +59,7 @@ const MultiSelect = props => {
             </li>
             <li
               style={{
-                color: selectedOptions.includes('option5') ? 'red' : 'inherit'
+                color: selectedOption === 'option5' ? 'red' : 'inherit'
               }}
               name={'option5'}
             >
@@ -82,4 +72,4 @@ const MultiSelect = props => {
   );
 };
 
-export default MultiSelect;
+export default SingleSelect;
