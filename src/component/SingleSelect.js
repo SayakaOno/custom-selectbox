@@ -1,9 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './SingleSelect.css';
 
 const SingleSelect = props => {
   const [selectedOption, setSelectedOption] = useState('');
   const [open, setOpen] = useState(false);
+  const windowRef = useRef(null);
+
+  useEffect(() => {
+    window.addEventListener('click', e => {
+      if (!windowClicked(e) && !dropdownClicked(e)) {
+        setOpen(false);
+      }
+    });
+  }, 0);
+
+  const handleWindowClicked = e => {
+    if (!e.target.closest('.close')) {
+      setOpen(!open);
+    }
+  };
+
+  const handleCloseClicked = e => {
+    setOpen(false);
+    setSelectedOption('');
+  };
 
   const handleClick = e => {
     let name = e.target.getAttribute('name');
@@ -12,62 +32,75 @@ const SingleSelect = props => {
     }
   };
 
+  const windowClicked = e => {
+    let target = e.target.closest('.window');
+    if (target && target === windowRef.current) {
+      return true;
+    }
+    return false;
+  };
+
+  const dropdownClicked = e => {
+    if (e.target.closest('.dropdown')) {
+      return true;
+    }
+    return false;
+  };
+
   return (
-    <div
-      className="select"
-      tabIndex="0"
-      onBlur={open ? () => setOpen(false) : null}
-    >
-      <div className="window" onClick={() => setOpen(!open)}>
-        {`${selectedOption || props.displayName || 'display name'}`}
-      </div>
-      {open && (
-        <div className="dropdown">
-          <h2>display name</h2>
-          <ul onClick={handleClick}>
-            <li
-              style={{
-                color: selectedOption === 'option1' ? 'red' : 'inherit'
-              }}
-              name={'option1'}
-            >
-              option1
-            </li>
-            <li
-              style={{
-                color: selectedOption === 'option2' ? 'red' : 'inherit'
-              }}
-              name={'option2'}
-            >
-              option2
-            </li>
-            <li
-              style={{
-                color: selectedOption === 'option3' ? 'red' : 'inherit'
-              }}
-              name={'option3'}
-            >
-              option3
-            </li>
-            <li
-              style={{
-                color: selectedOption === 'option4' ? 'red' : 'inherit'
-              }}
-              name={'option4'}
-            >
-              option4
-            </li>
-            <li
-              style={{
-                color: selectedOption === 'option5' ? 'red' : 'inherit'
-              }}
-              name={'option5'}
-            >
-              option5
-            </li>
-          </ul>
+    <div>
+      <div className="select">
+        <div
+          ref={windowRef}
+          className="window"
+          onClick={props.options.length ? handleWindowClicked : null}
+          style={{
+            borderColor: props.options.length
+              ? selectedOption
+                ? 'blue'
+                : 'blue'
+              : 'blue',
+            color: props.options.length
+              ? selectedOption
+                ? 'blue'
+                : 'inherit'
+              : 'blue',
+            cursor: props.options.length ? 'pointer' : 'inherit'
+          }}
+        >
+          {props.options.length &&
+          selectedOption &&
+          props.options.includes(selectedOption)
+            ? props.format
+              ? props.format(selectedOption)
+              : selectedOption
+            : props.title}
+          {props.options.length && selectedOption ? (
+            <span className="close" onClick={handleCloseClicked}>
+              x
+            </span>
+          ) : (
+            <div open={false} color={props.options.length ? 'blue' : 'blue'} />
+          )}
         </div>
-      )}
+        {open && (
+          <div className="dropdown" onClick={handleClick}>
+            <span className="close" onClick={() => setOpen(false)}>
+              x
+            </span>
+            <h2>{props.title}</h2>
+            <ul>
+              {props.options.map(option => {
+                return (
+                  <li name={option} key={option}>
+                    {option}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
