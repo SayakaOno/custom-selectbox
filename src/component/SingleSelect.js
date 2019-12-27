@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './SingleSelect.css';
+import { SelectWrapper, Window, Select, DropDown } from './SelectStyles';
 
 const SingleSelect = props => {
   const [selectedOption, setSelectedOption] = useState('');
@@ -26,10 +26,13 @@ const SingleSelect = props => {
   };
 
   const handleClick = e => {
-    let name = e.target.getAttribute('name');
-    if (e.target.tagName === 'LI') {
-      setSelectedOption(name);
+    let target = e.target.closest('li');
+    if (!target) {
+      return;
     }
+    let name = target.getAttribute('name');
+    setSelectedOption(name);
+    setOpen(false);
   };
 
   const windowClicked = e => {
@@ -48,9 +51,9 @@ const SingleSelect = props => {
   };
 
   return (
-    <div>
-      <div className="select">
-        <div
+    <SelectWrapper>
+      <Select className="select">
+        <Window
           ref={windowRef}
           className="window"
           onClick={props.options.length ? handleWindowClicked : null}
@@ -82,9 +85,9 @@ const SingleSelect = props => {
           ) : (
             <div open={false} color={props.options.length ? 'blue' : 'blue'} />
           )}
-        </div>
+        </Window>
         {open && (
-          <div className="dropdown" onClick={handleClick}>
+          <DropDown className="dropdown" onClick={handleClick}>
             <span className="close" onClick={() => setOpen(false)}>
               x
             </span>
@@ -98,10 +101,10 @@ const SingleSelect = props => {
                 );
               })}
             </ul>
-          </div>
+          </DropDown>
         )}
-      </div>
-    </div>
+      </Select>
+    </SelectWrapper>
   );
 };
 
