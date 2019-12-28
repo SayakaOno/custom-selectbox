@@ -12,7 +12,7 @@ const SingleSelect = props => {
         setOpen(false);
       }
     });
-  }, 0);
+  }, []);
 
   const handleWindowClicked = e => {
     if (!e.target.closest('.close')) {

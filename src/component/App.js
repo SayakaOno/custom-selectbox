@@ -2,7 +2,7 @@ import React from 'react';
 import MultiSelect from './MultiSelect';
 import SingleSelect from './SingleSelect';
 
-const options = ['option1', 'option2', 'option3', 'option4', 'option5'];
+const options = ['dog', 'cat', 'penguin', 'zebra', 'lion', 'rabbit'];
 
 const App = () => {
   return (

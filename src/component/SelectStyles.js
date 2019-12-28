@@ -62,27 +62,8 @@ export const DropDown = styled.div`
   }
 `;
 
-export const Svg = styled.svg`
-  fill: blue;
-  width: 10px;
-`;
-
 export const Icon = styled.svg`
   fill: none;
   stroke: blue;
   stroke-width: 2px;
 `;
-
-export const StyledCheckbox = styled.div`
-display: inline-block;
-width: 20px;
-height: 20px;
-background: blue;
-border: 1px solid blue
-border-radius: 3px;
-transition: all 150ms;
-margin-right: 5px;
-`;
-
-export const closeSvgPath =
-  'M733 9q-9-9-22.5-9T688 9L371 326 54 9q-9-9-22.5-9T9 9 0 31.5 9 54l317 317L9 688q-9 9-9 22.5T9 733t22.5 9 22.5-9l317-317 317 317q9 9 22.5 9t22.5-9 9-22.5-9-22.5L416 371 733 54q9-9 9-22.5T733 9z';

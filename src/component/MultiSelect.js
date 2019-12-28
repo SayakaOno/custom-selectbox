@@ -11,17 +11,21 @@ const MultiSelectBox = props => {
     window.addEventListener('click', e => {
       if (!windowClicked(e) && !dropdownClicked(e)) {
         setOpen(false);
+        setInput('');
       }
     });
-  }, 0);
+  }, []);
 
   const handleWindowClicked = e => {
     if (!e.target.closest('.close')) {
+      if (open) {
+        setInput('');
+      }
       setOpen(!open);
     }
   };
 
-  const handleCloseClicked = e => {
+  const handleCloseClicked = () => {
     setOpen(false);
     setSelectedOptions([]);
   };
@@ -57,6 +61,11 @@ const MultiSelectBox = props => {
     return false;
   };
 
+  const handleDropdownCloseClicked = () => {
+    setOpen(false);
+    setInput('');
+  };
+
   return (
     <SelectWrapper>
       <Select className="select">
@@ -87,7 +96,7 @@ const MultiSelectBox = props => {
         </Window>
         {open && (
           <DropDown className="dropdown" onClick={handleClick}>
-            <span className="close" onClick={() => setOpen(false)}>
+            <span className="close" onClick={handleDropdownCloseClicked}>
               x
             </span>
             <h2>{props.title}</h2>
@@ -107,7 +116,11 @@ const MultiSelectBox = props => {
                 .map(option => {
                   return (
                     <li name={option} key={option} style={{ display: 'flex' }}>
-                      <input type="checkbox" />
+                      <input
+                        type="checkbox"
+                        checked={selectedOptions.includes(option)}
+                        onChange={handleClick}
+                      />
                       {option}
                     </li>
                   );
