@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { SelectWrapper, Window, Select, DropDown } from './SelectStyles';
+import close from '../media/close.svg';
 
 const SingleSelect = props => {
   const [selectedOption, setSelectedOption] = useState('');
@@ -80,7 +81,7 @@ const SingleSelect = props => {
             : props.title}
           {props.options.length && selectedOption ? (
             <span className="close" onClick={handleCloseClicked}>
-              x
+              <img src={close} style={{ width: 8 }} />
             </span>
           ) : (
             <div open={false} color={props.options.length ? 'blue' : 'blue'} />
@@ -89,7 +90,7 @@ const SingleSelect = props => {
         {open && (
           <DropDown className="dropdown" onClick={handleClick}>
             <span className="close" onClick={() => setOpen(false)}>
-              x
+              <img src={close} style={{ width: 8 }} />
             </span>
             <h2>{props.title}</h2>
             <ul>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { SelectWrapper, Window, Select, DropDown } from './SelectStyles';
+import close from '../media/close.svg';
+import arrow from '../media/arrow.svg';
 
 const MultiSelectBox = props => {
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -87,17 +89,17 @@ const MultiSelectBox = props => {
           <span className="icon">
             {selectedOptions.length ? (
               <span className="close" onClick={handleCloseClicked}>
-                x
+                <img src={close} style={{ width: 8 }} />
               </span>
             ) : (
-              '^'
+              <img src={arrow} style={{ width: 8 }} />
             )}
           </span>
         </Window>
         {open && (
           <DropDown className="dropdown" onClick={handleClick}>
             <span className="close" onClick={handleDropdownCloseClicked}>
-              x
+              <img src={close} style={{ width: 8 }} />
             </span>
             <h2>{props.title}</h2>
             <div className="input">
