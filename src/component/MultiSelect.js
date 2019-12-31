@@ -3,6 +3,8 @@ import { SelectWrapper, Window, Select, DropDown } from './SelectStyles';
 import close from '../media/close.svg';
 import arrow from '../media/arrow.svg';
 
+const LightGrey = '#e0e1e2';
+
 const MultiSelectBox = props => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [open, setOpen] = useState(false);
@@ -76,7 +78,7 @@ const MultiSelectBox = props => {
           className="window"
           onClick={handleWindowClicked}
           style={{
-            borderColor: selectedOptions.length ? 'blue' : 'blue',
+            borderColor: selectedOptions.length ? LightGrey : LightGrey,
             color: selectedOptions.length ? 'blue' : 'inherit',
             cursor: props.options.length ? 'pointer' : 'inherit'
           }}

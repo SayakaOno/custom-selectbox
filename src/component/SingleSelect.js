@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { SelectWrapper, Window, Select, DropDown } from './SelectStyles';
 import close from '../media/close.svg';
 
+const LightGrey = '#e0e1e2';
+
 const SingleSelect = props => {
   const [selectedOption, setSelectedOption] = useState('');
   const [open, setOpen] = useState(false);
@@ -61,14 +63,14 @@ const SingleSelect = props => {
           style={{
             borderColor: props.options.length
               ? selectedOption
-                ? 'blue'
-                : 'blue'
-              : 'blue',
+                ? LightGrey
+                : LightGrey
+              : LightGrey,
             color: props.options.length
               ? selectedOption
                 ? 'blue'
                 : 'inherit'
-              : 'blue',
+              : LightGrey,
             cursor: props.options.length ? 'pointer' : 'inherit'
           }}
         >
@@ -84,7 +86,10 @@ const SingleSelect = props => {
               <img src={close} style={{ width: 8 }} />
             </span>
           ) : (
-            <div open={false} color={props.options.length ? 'blue' : 'blue'} />
+            <div
+              open={false}
+              color={props.options.length ? LightGrey : LightGrey}
+            />
           )}
         </Window>
         {open && (

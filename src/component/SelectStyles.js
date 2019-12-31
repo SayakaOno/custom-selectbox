@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+const LightGrey = '#e0e1e2';
 
 export const SelectWrapper = styled.div`
   position: relative;
@@ -11,7 +12,8 @@ export const Select = styled.div`
 `;
 export const Window = styled.div`
   border-radius: 5px;
-  border: solid 1px blue;
+  border: solid 1px ${LightGrey};
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   padding: 5px;
   margin-bottom: 2px;
   width: fit-content;
@@ -22,23 +24,24 @@ export const Window = styled.div`
 `;
 export const DropDown = styled.div`
   min-width: 150px;
-  border: solid 1px blue;
+  border: solid 1px ${LightGrey};
   padding-top: 10px;
   width: fit-content;
   position: relative;
   & h2 {
-    margin-bottom: 5px;
+    margin: 5px 0;
     padding: 0 10px;
   }
   & ul {
     list-style: none;
     padding-left: 0;
     cursor: pointer;
+    margin: 0;
   }
   & li {
     padding: 3px 13px;
     &:hover {
-      background: blue;
+      background: ${LightGrey};
     }
     &:last-child {
       padding-bottom: 8px;
@@ -64,6 +67,6 @@ export const DropDown = styled.div`
 
 export const Icon = styled.svg`
   fill: none;
-  stroke: blue;
+  stroke: ${LightGrey};
   stroke-width: 2px;
 `;
