@@ -40,14 +40,32 @@ export const DropDown = styled.div`
   }
   & li {
     padding: 3px 13px;
+    align-items: center;
+    display: flex !important;
     &:hover {
       background: ${LightGrey};
     }
     &:last-child {
       padding-bottom: 8px;
     }
+    & div {
+      position: relative;
+    }
+    & span {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: 5px;
+      border: solid 1px #999;
+      border-radius: 3px;
+    }
+    & img {
+      position: absolute;
+      left: 0px;
+      top: 4px;
+    }
   }
-  & span {
+  & .close {
     position: absolute;
     top: 0;
     right: 0;

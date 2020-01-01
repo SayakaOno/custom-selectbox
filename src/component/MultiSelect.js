@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { SelectWrapper, Window, Select, DropDown } from './SelectStyles';
 import close from '../media/close.svg';
 import arrow from '../media/arrow.svg';
+import check from '../media/check.svg';
 
 const LightGrey = '#e0e1e2';
 
@@ -120,11 +121,16 @@ const MultiSelectBox = props => {
                 .map(option => {
                   return (
                     <li name={option} key={option} style={{ display: 'flex' }}>
-                      <input
-                        type="checkbox"
-                        checked={selectedOptions.includes(option)}
-                        onChange={handleClick}
-                      />
+                      <div>
+                        <span />
+                        {selectedOptions.includes(option) ? (
+                          <img
+                            src={check}
+                            style={{ width: 10 }}
+                            onChange={handleClick}
+                          />
+                        ) : null}
+                      </div>
                       {option}
                     </li>
                   );
